@@ -1,42 +1,15 @@
 @import "tailwindcss";
 
-/* Your custom styles matching portfolio */
-@layer base {
-  body {
-    @apply pt-[8.5rem] bg-gray-50;
-  }
-  
-  .inner-section {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-  
-  h1, h2, h3 {
-    @apply font-bold tracking-tight;
-  }
-  
-  h1 {
-    @apply text-4xl md:text-6xl lg:text-8xl;
-  }
-  
-  h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl mb-6;
-  }
-  
-  /* Your signature box-shadow */
-  .shadow-brutal {
-    box-shadow: 6px 6px 0 #000;
-  }
-  
-  .shadow-brutal-lg {
-    box-shadow: 10px 10px 0 #000;
-  }
-  
-  /* Skewed button */
-  .btn-skew {
-    @apply -skew-x-12 px-6 py-3 font-bold transition-all duration-300;
-  }
-  
-  .btn-skew:hover {
-    @apply brightness-90;
-  }
+@theme {
+  --color-primary: #df2582;
+  --color-secondary: #FFBF00;
+  --color-accent: #A7A8CD;
+  --color-teal: rgb(3, 142, 125);
+  --color-blue: rgba(17, 121, 191, 1);
+  --color-soft-bg: #faf9ff;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-soft-bg);
 }
