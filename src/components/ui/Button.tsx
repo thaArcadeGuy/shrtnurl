@@ -28,7 +28,7 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`${variants[variant]} ${sizes[size]} font-semibold rounded-lg transition-all duration-200 ${className}`}
+      className={`${variants[variant]} ${sizes[size]} font-semibold cursor-pointer rounded-lg transition-all duration-200 ${className}`}
     >
       {children}
     </button>

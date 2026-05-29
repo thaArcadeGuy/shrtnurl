@@ -23,53 +23,51 @@ export default function Header() {
           {/* Logo Section */}
           <div className="shrink-0">
             <a href="/" className="flex items-center space-x-2">
-              <span className="text-3xl">✂️</span>
-              <span className="font-bold text-xl" style={{ color: "#df2582" }}>
+              <span className="font-bold text-3xl" style={{ color: "#df2582" }}>
                 shrtnurl
               </span>
             </a>
-            <p className="text-xs text-gray-500 hidden sm:block">shorten ur links</p>
           </div>
           
           {/* Desktop Navigation Section */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden text-[1.125rem] md:flex items-center space-x-8">
             <button
               onClick={() => handleAuthRedirect("/signup")}
-              className="text-gray-700 hover:text-[#df2582] transition"
+              className="text-gray-700 cursor-pointer hover:text-[#df2582] transition"
             >
               My URLs
             </button>
             <button
               onClick={() => scrollToSection('features')}
-              className="text-gray-700 hover:text-[#df2582] transition"
+              className="text-gray-700 cursor-pointer hover:text-[#df2582] transition"
             >
               Features
             </button>
             <button 
               onClick={() => scrollToSection('pricing')} 
-              className="text-gray-700 hover:text-[#df2582] transition"
+              className="text-gray-700 cursor-pointer hover:text-[#df2582] transition"
             >
               Pricing
             </button>
             <button 
               onClick={() => scrollToSection('faq')} 
-              className="text-gray-700 hover:text-[#df2582] transition"
+              className="text-gray-700 cursor-pointer hover:text-[#df2582] transition"
             >
               FAQs
             </button>
             <button 
               onClick={() => handleAuthRedirect('/signin')} 
-              className="text-gray-700 hover:text-[#df2582] transition"
+              className="text-gray-700 cursor-pointer hover:text-[#df2582] transition"
             >
               Analytics
             </button>
           </nav>
 
           {/* Auth Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden text-[1.125rem] md:flex items-center space-x-4">
             <button
               onClick={() => handleAuthRedirect("/signin")}
-              className="text-gray-700 hover:text-[#df2582] transition"
+              className="text-gray-700 cursor-pointer hover:text-[#df2582] transition"
             >
               Login
             </button>
