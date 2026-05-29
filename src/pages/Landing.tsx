@@ -1,5 +1,6 @@
 import Header from "../components/landing/Header"
 import Hero from "../components/landing/Hero"
+import Stats from "../components/landing/Stats"
 
 export default function Landing() {
   return (
@@ -7,6 +8,7 @@ export default function Landing() {
       <Header />
       <main>
         <Hero />
+        <Stats />
       </main>
     </div>
   );
