@@ -8,7 +8,7 @@ interface Stat {
 }
 
 export default function Stats() {
-  const stats: stat[] =[
+  const stats: Stat[] =[
     { label: "Active Users", value: 15000, suffix: "+", color: "#df2582" },
     { label: "Links Created", value: 250000, suffix: "+", color: "#FFBF00" },
     { label: "QR Codes Generated", value: 50000, suffix: "+", color: "rgb(3, 142, 125)" },
@@ -16,6 +16,37 @@ export default function Stats() {
   ]
 
   const [counters, setCounters] = useState(stats.map(() => 0))
+
+  useEffect(() => {
+    const intervals = stats.map((stat, index) => {
+      const duration = 2000
+      const steps = 60
+      const increment = stat.value / steps
+      let current = 0
+
+      const interval = setInterval(() => {
+        current += increment
+        if (current >= stat.value) {
+          setCounters(prev => {
+            const newCounters = [...prev]
+            newCounters[index] = stat.value
+            return newCounters
+          })
+          clearInterval(interval)
+        } else {
+          setCounters(prev => {
+            const newCounters = [...prev]
+            newCounters[index] = Math.floor(current)
+            return newCounters
+          })
+        }
+      }, duration / steps)
+
+      return interval
+    })
+
+    return () => intervals.forEach(interval => clearInterval(interval))
+  }, [])
 
   return (
     <section className="p6-16 bg-gradient-to-r from-white to-gray-50">
