@@ -5,6 +5,7 @@ import Features from "../components/landing/Features"
 import Pricing from "../components/landing/Pricing"
 import Banner from "../components/landing/Banner"
 import FAQ from "../components/landing/FAQ"
+import CtaBanner from "../components/landing/CtaBanner"
 
 export default function Landing() {
   return (
@@ -17,6 +18,7 @@ export default function Landing() {
         <Pricing />
         <Banner />
         <FAQ />
+        <CtaBanner />
       </main>
     </div>
   );
