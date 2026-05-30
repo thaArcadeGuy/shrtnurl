@@ -3,6 +3,7 @@ import Hero from "../components/landing/Hero"
 import Stats from "../components/landing/Stats"
 import Features from "../components/landing/Features"
 import Pricing from "../components/landing/Pricing"
+import Banner from "../components/landing/Banner"
 
 export default function Landing() {
   return (
@@ -13,6 +14,7 @@ export default function Landing() {
         <Stats />
         <Features />
         <Pricing />
+        <Banner />
       </main>
     </div>
   );
