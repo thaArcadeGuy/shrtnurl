@@ -6,6 +6,7 @@ import Pricing from "../components/landing/Pricing"
 import Banner from "../components/landing/Banner"
 import FAQ from "../components/landing/FAQ"
 import CtaBanner from "../components/landing/CtaBanner"
+import Footer from "../components/landing/Footer"
 
 export default function Landing() {
   return (
@@ -20,6 +21,7 @@ export default function Landing() {
         <FAQ />
         <CtaBanner />
       </main>
+      <Footer />
     </div>
   );
 }
