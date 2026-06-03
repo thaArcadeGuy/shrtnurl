@@ -8,7 +8,7 @@ export default function Footer() {
     message: ""
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
     alert(`Thank you ${formData.name}! We'll get back to you soon.`)
     setFormData({ name: "", email: "", message: "" })
