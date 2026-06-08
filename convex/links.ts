@@ -6,7 +6,7 @@ function generateSlug(): string {
   return Math.random().toString(36).substring(2, 8)
 }
 
-export const createLink = mutataion({
+export const createLink = mutation({
   args: {
     originalUrl: v.string(),
     customSlug: v.optional(v.string()),
@@ -18,10 +18,8 @@ export const createLink = mutataion({
       throw new Error("Invalid URL. Must start with http:// or https://")
     }
 
-    let slug = args.customSlug
-    if (!slug) {
-      slug = generateSlug()
-    } else {
+    const slug: string = args.customSlug ?? generateSlug()
+    if (args.customSlug) {
       const existing = await ctx.db
         .query("links")
         .withIndex("by_slug", (q) => q.eq("slug", slug))
