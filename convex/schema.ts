@@ -9,7 +9,8 @@ export default defineSchema({
     clicks: v.number(),
     qrDownloads: v.number(),
     createdAt: v.number(),
-    expiresAt: v.optional(v.number())
+    expiresAt: v.optional(v.number()),
+    status: v.optional(v.union(v.literal('active'), v.literal('expired'))),
   }).index("by_userId", ["userId"])
     .index("by_slug", ["slug"]),
 
