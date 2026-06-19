@@ -1,5 +1,5 @@
 import { v } from "convex/values"
-import { mutation, query } from "./_generated/server"
+import { mutation, query, internalMutation, internalQuery } from "./_generated/server"
 import { getUserId } from "./auth"
 
 function generateSlug(): string {
@@ -80,7 +80,7 @@ export const deleteLink = mutation({
   },
 })
 
-export const getLinksBySlug = query({
+export const getLinkBySlug = query({
   args: {
     slug: v.string(),
   },
@@ -95,14 +95,14 @@ export const getLinksBySlug = query({
     }
 
     if (link.expiresAt && link.expiresAt < Date.now()) {
-      return {expired: true}
+      return { expired: true, originalUrl: link.originalUrl }
     }
 
     return link
   }
 })
 
-export const trackClick = mutation({
+export const trackClick = internalMutation({
   args: {
     linkId: v.id("links"),
     referrer: v.string(),
@@ -110,9 +110,12 @@ export const trackClick = mutation({
     country: v.string(),
   },
   handler: async (ctx, args) => {
-    await ctx.db.patch(args.linkId, {
-      clicks: (await ctx.db.get(args.linkId))!.clicks + 1,
-    })
+    const link = await ctx.db.get(args.linkId)
+    if (link) {
+      await ctx.db.patch(args.linkId, {
+        clicks: (link.clicks || 0) + 1,
+      })
+    }
 
     await ctx.db.insert("clicks", {
       linkId: args.linkId,
@@ -122,4 +125,26 @@ export const trackClick = mutation({
       country: args.country,
     })
   },
+})
+
+export const internalGetLinkBySlug = internalQuery({
+  args: {
+    slug: v.string(),
+  },
+  handler: async (ctx,args) => {
+    const link = await ctx.db
+      .query("links")
+      .withIndex("by_slug", (q) => q.eq("slug", args.slug))
+      .first()
+
+    if (!link) {
+      return null
+    }
+
+    if (link.expiresAt && link.expiresAt < Date.now()) {
+      return { ...link, expired: true }
+    }
+
+    return link
+  }
 })
