@@ -15,6 +15,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "autoprefixer": "^10.5.0",
     "convex": "^1.40.0",
+    "convex-helpers": "^0.1.119",
     "nanoid": "^5.1.11",
     "postcss": "^8.5.15",
     "qrcode.react": "^4.2.0",
