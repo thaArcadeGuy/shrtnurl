@@ -12,7 +12,12 @@ export const createLink = mutation({
     customSlug: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const userId = await getUserId(ctx)
+    let userId: string | null = null
+    try {
+      userId = await getUserId(ctx)
+    } catch (error) {
+       console.log("Guest user creating link. Error:", error instanceof Error ? error.message : error)
+    }
 
     if (!args.originalUrl.startsWith("http://") && !args.originalUrl.startsWith("https://")) {
       throw new Error("Invalid URL. Must start with http:// or https://")
@@ -31,7 +36,7 @@ export const createLink = mutation({
     }
 
     const linkId = await ctx.db.insert("links", {
-      userId,
+      userId: userId || "guest",
       originalUrl: args.originalUrl,
       slug,
       clicks: 0,
@@ -45,7 +50,12 @@ export const createLink = mutation({
 
 export const getUserLinks = query({
   handler: async (ctx) => {
-    const userId = await getUserId(ctx)
+    let userId: string | null = null
+    try {
+      userId = await getUserId(ctx)
+    } catch {
+      return []
+    }
 
     const links = await ctx.db
       .query("links")
