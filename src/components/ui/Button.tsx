@@ -4,6 +4,7 @@ interface ButtonProps {
   size?: "sm" | "md" | "lg";
   onClick?: () => void;
   className?: string;
+  disabled?: boolean;
 }
 
 export default function Button({ 
@@ -11,7 +12,8 @@ export default function Button({
   variant = "primary",
   size = "md", 
   onClick,
-  className=""
+  className="",
+  disabled = false,
 }: ButtonProps) {
   const variants = {
     primary: "bg-[#df2582] text-white hover:bg-[#c01e6f]",
@@ -28,6 +30,7 @@ export default function Button({
   return (
     <button
       onClick={onClick}
+      disabled={disabled}
       className={`${variants[variant]} ${sizes[size]} font-semibold cursor-pointer rounded-lg transition-all duration-200 ${className}`}
     >
       {children}
